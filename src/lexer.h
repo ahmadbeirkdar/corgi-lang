@@ -4,9 +4,27 @@
 
 #ifndef CORGI_LANG_LEXER_H
 #define CORGI_LANG_LEXER_H
-
+#include <istream>
+#include "token.h"
 
 class lexer {
+public:
+    lexer()=delete;
+    lexer(std::istream *in)
+        : in(in) {kind = get_token()};
+
+    std::pair<uint32_t,uint32_t> location;
+    Kind kind;
+    char last_char = ' ';
+
+private:
+    auto get_token() -> Kind;
+    auto get_char()  -> void;
+    std::istream *in;
+    std::string identifier;
+    std::string value;
+
+
 
 };
 

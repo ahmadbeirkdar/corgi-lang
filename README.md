@@ -1,5 +1,8 @@
 # The Corgi Programming Language
-The Corgi Programming Language - An LLVM Frontend
+Work in progress.
+
+A simple procedural language, with a focus on algorithms.
+
 
 <p float="left">
 <img src="https://i.imgur.com/1T5jHBy.jpg" alt="corgi" width="300"/>

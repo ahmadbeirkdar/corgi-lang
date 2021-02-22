@@ -1,10 +1,9 @@
-# The Corgi Programming Language
-Work in progress.
+<h1 align="center">The Corgi Programming Language</h1>
+<p align="center">The Corgi Programming Language - An LLVM Frontend<br>A simple procedural language, with a focus on algorithms.</p>
 
-A simple procedural language, with a focus on algorithms.
+<div align="center">
+    <img src="https://i.imgur.com/1T5jHBy.jpg" alt="corgi" width="300"/>
+    <img src="https://i.imgur.com/2ybDnbs.png" alt="corgi" width="520"/>
+</div>
 
 
-<p float="left">
-<img src="https://i.imgur.com/1T5jHBy.jpg" alt="corgi" width="300"/>
-<img src="https://i.imgur.com/2ybDnbs.png" alt="corgi" width="520"/>
-</p>

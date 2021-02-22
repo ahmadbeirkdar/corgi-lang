@@ -6,15 +6,17 @@
 #define CORGI_LANG_TOKEN_H
 #include <any>
 
-template<typename T = void>
+enum Kind{
+    EndOfFile,Def,Extern,Identifier,
+    Str,Bool,Char,Array,
+    U8,U16,U32,U64,
+    I8,I16,I32,I64,
+    F32,F64,
+};
+
+template<typename T = void*>
 class token {
 public:
-    enum Kind{
-        EndOfFile,Def,Extern,Identifier,
-        Str,Bool,Char,Array,
-        U8,U16,U32,U64,
-        I8,I16,I32,I64,
-    };
 
     token()=default;
     token(Kind kind, T value, uint32_t line = 0, uint32_t column = 0)

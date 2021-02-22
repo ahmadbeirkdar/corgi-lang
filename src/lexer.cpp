@@ -53,6 +53,7 @@ auto lexer::get_token() -> Kind {
         return this->get_token();
     }
 
+    return Kind::Nil;
 
 }
 

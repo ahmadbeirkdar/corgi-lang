@@ -1,5 +1,5 @@
 <h1 align="center">The Corgi Programming Language</h1>
-<p align="center">The Corgi Programming Language - An LLVM Frontend\nA simple procedural language, with a focus on algorithms.</p>
+<p align="center">The Corgi Programming Language - An LLVM Frontend<br>A simple procedural language, with a focus on algorithms.</p>
 
 <div align="center">
     <img src="https://i.imgur.com/1T5jHBy.jpg" alt="corgi" width="300"/>

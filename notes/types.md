@@ -4,6 +4,7 @@
 | ------- | ----------- |
 | `bool`  | Boolean type. 
 | `array` | Fixed sized array, denoted by: `[Type; Size]`.
+| `str`   | A String type.
 | `char`  | Character type.
 | `u8`    | 8-bit unsigned integer type.
 | `u16`   | 16-bit unsigned integer type.

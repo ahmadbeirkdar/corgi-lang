@@ -5,13 +5,13 @@
 #include "lexer.h"
 
 [[nodiscard]]
-auto lexer::get_token() -> Kind {
+auto lexer::get_token() -> std::unique_ptr<token> {
     while(isspace(last_char))
         this->get_char();
 
     // Check EOF
     if(last_char == EOF)
-        return Kind::EndOfFile;
+        return std::make_unique<token>(Kind::EndOfFile,location.first,location.second);
 
     // Get identifier
     if(isalpha(last_char)){
@@ -24,8 +24,8 @@ auto lexer::get_token() -> Kind {
         }
 
         if(identifier == "def")
-            return Kind::Def;
-        return Kind::Identifier;
+            return std::make_unique<token>(Kind::Def,location.first,location.second);
+        return std::make_unique<token>(Kind::Identifier,location.first,location.second);
     }
 
     // Get number
@@ -34,7 +34,7 @@ auto lexer::get_token() -> Kind {
             value += last_char;
             this->get_char();
         }
-        return (value.find('.') == std::string::npos) ? Kind::I32 : Kind::F32;
+        return (value.find('.') == std::string::npos) ? std::make_unique<token>(Kind::I32,location.first,location.second) : std::make_unique<token>(Kind::F32,location.first,location.second);
     }
 
     if(last_char == '"'){
@@ -43,7 +43,7 @@ auto lexer::get_token() -> Kind {
             value += last_char;
             this->get_char();
         }
-        return Kind::Str;
+        return std::make_unique<token>(Kind::Str,location.first,location.second);
     }
 
     // Ignore Comment
@@ -53,7 +53,7 @@ auto lexer::get_token() -> Kind {
         return this->get_token();
     }
 
-    return Kind::Nil;
+    return std::make_unique<token>(Kind::Nil,location.first,location.second);
 
 }
 

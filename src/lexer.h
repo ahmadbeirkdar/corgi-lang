@@ -11,14 +11,14 @@ class lexer {
 public:
     lexer()=delete;
     lexer(std::istream *in)
-        : in(in) {kind = get_token()};
+        : in(in) {get_token();};
 
     std::pair<uint32_t,uint32_t> location;
     Kind kind;
     char last_char = ' ';
 
 private:
-    auto get_token() -> Kind;
+    auto get_token() -> std::unique_ptr<token>;
     auto get_char()  -> void;
     std::istream *in;
     std::string identifier;

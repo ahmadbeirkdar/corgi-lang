@@ -18,9 +18,9 @@ enum Kind{
 
 class token {
 public:
-
     token()=delete;
 
+    explicit
     token(Kind kind, uint32_t line = 0, uint32_t column = 0)
             : kind(kind), location(line,column), type(typeid(nullptr)) {}
 

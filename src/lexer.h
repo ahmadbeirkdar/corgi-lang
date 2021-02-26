@@ -10,15 +10,17 @@
 class lexer {
 public:
     lexer()=delete;
-    lexer(std::istream *in)
-        : in(in) {get_token();};
+    explicit lexer(std::istream *in)
+        : in(in) {next_token();};
 
     std::pair<uint32_t,uint32_t> location;
     Kind kind;
     char last_char = ' ';
+    auto next_token() -> void;
+    std::unique_ptr<token> curr_token;
 
 private:
-    auto get_token() -> std::unique_ptr<token>;
+    [[nodiscard]] auto get_token() -> std::unique_ptr<token>;
     auto get_char()  -> void;
     std::istream *in;
     std::string identifier;

@@ -66,3 +66,7 @@ auto lexer::get_char() -> void {
         location.second++;
     last_char = in->get();
 }
+
+auto lexer::next_token() -> void {
+    this->curr_token = this->get_token();
+}

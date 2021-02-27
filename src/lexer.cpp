@@ -5,7 +5,7 @@
 #include "lexer.h"
 
 [[nodiscard]]
-auto lexer::get_token() -> std::unique_ptr<token> {
+auto Lexer::get_token() -> std::unique_ptr<token> {
     while(isspace(last_char))
         this->get_char();
 
@@ -57,7 +57,7 @@ auto lexer::get_token() -> std::unique_ptr<token> {
 
 }
 
-auto lexer::get_char() -> void {
+auto Lexer::get_char() -> void {
     if(last_char == '\n'){
         location.first++;
         location.second = 1;
@@ -65,8 +65,4 @@ auto lexer::get_char() -> void {
     else
         location.second++;
     last_char = in->get();
-}
-
-auto lexer::next_token() -> void {
-    this->curr_token = this->get_token();
 }

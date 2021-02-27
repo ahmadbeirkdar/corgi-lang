@@ -2,25 +2,24 @@
 // Created by Ahmad Beirkdar on 2021-02-22.
 //
 
-#ifndef CORGI_LANG_LEXER_H
-#define CORGI_LANG_LEXER_H
+#ifndef CORGI_LANG_Lexer_H
+#define CORGI_LANG_Lexer_H
 #include <istream>
 #include "token.h"
 
-class lexer {
+class Lexer {
 public:
-    lexer()=delete;
-    explicit lexer(std::istream *in)
-        : in(in) {next_token();};
+    Lexer()=delete;
+    explicit Lexer(std::istream *in)
+        : in(in) {};
 
     std::pair<uint32_t,uint32_t> location;
     Kind kind;
     char last_char = ' ';
-    auto next_token() -> void;
-    std::unique_ptr<token> curr_token;
+
+    [[nodiscard]] auto get_token() -> std::unique_ptr<token>;
 
 private:
-    [[nodiscard]] auto get_token() -> std::unique_ptr<token>;
     auto get_char()  -> void;
     std::istream *in;
     std::string identifier;
@@ -31,4 +30,4 @@ private:
 };
 
 
-#endif //CORGI_LANG_LEXER_H
+#endif //CORGI_LANG_Lexer_H

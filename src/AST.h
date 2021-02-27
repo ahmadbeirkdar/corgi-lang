@@ -16,28 +16,28 @@ public:
     virtual ~ExprAST() = default;
 };
 
-class VariableExprAST: ExprAST{
+class VariableExprAST: public ExprAST{
 public:
     explicit VariableExprAST(std::string name) : name(std::move(name)) {};
 private:
     std::string name;
 };
 
-class i32ExprAST: ExprAST{
+class i32ExprAST: public ExprAST{
 public:
     explicit i32ExprAST(int32_t value) : value(value) {};
 private:
     int32_t value;
 };
 
-class f32ExprAST: ExprAST{
+class f32ExprAST: public ExprAST{
 public:
     explicit f32ExprAST(float value) : value(value) {};
 private:
     float value;
 };
 
-class BinaryExprAST: ExprAST{
+class BinaryExprAST: public ExprAST{
 public:
     BinaryExprAST(char operation,std::unique_ptr<ExprAST> LHS, std::unique_ptr<ExprAST> RHS)
         : operation(operation), LHS(std::move(LHS)), RHS(std::move(RHS))  {};
@@ -55,7 +55,7 @@ private:
     std::vector<std::unique_ptr<ExprAST>> args;
 };
 
-class FunctionPrototypeExprAST : public ExprAST {
+class FunctionPrototypeExprAST {
 public:
     FunctionPrototypeExprAST(std::string name, std::vector<std::string> args)
             : name(std::move(name)), args(std::move(args)) {}
@@ -64,7 +64,7 @@ private:
     std::vector<std::string> args;
 };
 
-class FunctionAST : public ExprAST {
+class FunctionAST {
 public:
     FunctionAST(std::unique_ptr<FunctionPrototypeExprAST> prototype, std::unique_ptr<ExprAST> body)
             : prototype(std::move(prototype)), body(std::move(body)) {}

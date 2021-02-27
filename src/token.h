@@ -29,10 +29,10 @@ public:
         : kind(kind), value(std::make_any<T>(value)), type(typeid(T)),location(line,column) {}
 
     template<typename T>
-    [[nodiscard]] auto get_value()  const  -> T       {return std::any_cast<T>(value);}
-    [[nodiscard]] auto get_kind()   const  -> Kind       {return kind;}
-    [[nodiscard]] auto get_line()   const  -> uint32_t   {return location.first;}
-    [[nodiscard]] auto get_column() const  -> uint32_t   {return location.second;}
+    [[nodiscard]] auto get_value()  const  -> T          {return std::any_cast<T>(value);}
+    [[nodiscard]] auto get_kind()   const  -> Kind       {return kind;                   }
+    [[nodiscard]] auto get_line()   const  -> uint32_t   {return location.first;         }
+    [[nodiscard]] auto get_column() const  -> uint32_t   {return location.second;        }
 
     std::type_index type;
 private:

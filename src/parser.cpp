@@ -23,8 +23,50 @@ auto parser::ParseExpr() -> std::unique_ptr<ExprAST> {
     return std::unique_ptr<ExprAST>();
 }
 
+auto parser::ParseI8Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<i8ExprAST>(curr_token->get_value<int8_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseI16Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<i16ExprAST>(curr_token->get_value<int16_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
 auto parser::ParseI32Expr() -> std::unique_ptr<ExprAST> {
     auto res = std::make_unique<i32ExprAST>(curr_token->get_value<int32_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseI64Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<i64ExprAST>(curr_token->get_value<int64_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseU8Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<u8ExprAST>(curr_token->get_value<u_int8_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseU16Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<u16ExprAST>(curr_token->get_value<u_int16_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseU32Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<u32ExprAST>(curr_token->get_value<u_int32_t>());
+    this->getNextToken();
+    return std::move(res);
+}
+
+auto parser::ParseU64Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<u64ExprAST>(curr_token->get_value<u_int64_t>());
     this->getNextToken();
     return std::move(res);
 }

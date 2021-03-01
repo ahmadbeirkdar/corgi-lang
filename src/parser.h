@@ -21,7 +21,14 @@ private:
     static auto LogErrorPrototype(const std::string_view& str)      -> std::unique_ptr<FunctionPrototypeExprAST>;
 
     auto ParseExpr()             -> std::unique_ptr<ExprAST>;
+    auto ParseI8Expr()           -> std::unique_ptr<ExprAST>;
+    auto ParseI16Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseI32Expr()          -> std::unique_ptr<ExprAST>;
+    auto ParseI64Expr()          -> std::unique_ptr<ExprAST>;
+    auto ParseU8Expr()           -> std::unique_ptr<ExprAST>;
+    auto ParseU16Expr()          -> std::unique_ptr<ExprAST>;
+    auto ParseU32Expr()          -> std::unique_ptr<ExprAST>;
+    auto ParseU64Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseF32Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseParenExpr()        -> std::unique_ptr<ExprAST>;
     auto ParseIdentifierExpr()   -> std::unique_ptr<ExprAST>;

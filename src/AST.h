@@ -23,11 +23,60 @@ private:
     std::string name;
 };
 
+class i8ExprAST: public ExprAST{
+public:
+    explicit i8ExprAST(int8_t value) : value(value) {};
+private:
+    int8_t value;
+};
+
+class i16ExprAST: public ExprAST{
+public:
+    explicit i16ExprAST(int16_t value) : value(value) {};
+private:
+    int16_t value;
+};
+
 class i32ExprAST: public ExprAST{
 public:
     explicit i32ExprAST(int32_t value) : value(value) {};
 private:
     int32_t value;
+};
+
+class i64ExprAST: public ExprAST{
+public:
+    explicit i64ExprAST(int64_t value) : value(value) {};
+private:
+    int64_t value;
+};
+
+class u8ExprAST: public ExprAST{
+public:
+    explicit u8ExprAST(u_int8_t value) : value(value) {};
+private:
+    u_int8_t value;
+};
+
+class u16ExprAST: public ExprAST{
+public:
+    explicit u16ExprAST(u_int16_t value) : value(value) {};
+private:
+    u_int16_t value;
+};
+
+class u32ExprAST: public ExprAST{
+public:
+    explicit u32ExprAST(u_int32_t value) : value(value) {};
+private:
+    u_int32_t value;
+};
+
+class u64ExprAST: public ExprAST{
+public:
+    explicit u64ExprAST(u_int64_t value) : value(value) {};
+private:
+    u_int64_t value;
 };
 
 class f32ExprAST: public ExprAST{

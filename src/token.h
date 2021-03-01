@@ -10,7 +10,7 @@
 
 enum Kind{
     EndOfFile,Def,Extern,Identifier,Nil,
-    Assignment,Colon,
+    Assignment,Colon,Type,
     Str,Bool,Char,Array,
     U8,U16,U32,U64,
     I8,I16,I32,I64,

@@ -64,8 +64,7 @@ auto Lexer::get_token() -> std::unique_ptr<token> {
             this->get_char();
         }
 
-        // TODO: Get type name
-
+        return std::make_unique<token>(Kind::Type,std::make_any<std::string>(value),location.first,location.second);
     }
 
     // Ignore Comment

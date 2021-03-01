@@ -103,7 +103,7 @@ auto parser::ParseIdentifierExpr() -> std::unique_ptr<ExprAST> {
     this->getNextToken();
     std::vector<std::unique_ptr<ExprAST>> fun_args;
     if(this->curr_token->get_value<char>() != ')'){
-        while (1) {
+        while (true) {
             auto arg = ParseExpr();
             if (arg)
                 fun_args.push_back(std::move(arg));
@@ -118,5 +118,6 @@ auto parser::ParseIdentifierExpr() -> std::unique_ptr<ExprAST> {
 
     }
     this->getNextToken();
-    return std::make_unique<FunctionCallExprAST>(name,fun_args);
+    return std::make_unique<FunctionCallExprAST>(name,std::move(fun_args));
 }
+

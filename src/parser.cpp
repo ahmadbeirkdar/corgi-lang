@@ -20,7 +20,10 @@ auto parser::LogErrorPrototype(const std::string_view &str) -> std::unique_ptr<F
 }
 
 auto parser::ParseExpr() -> std::unique_ptr<ExprAST> {
-    return std::unique_ptr<ExprAST>();
+    auto LHS = this->ParsePrimary();
+    if(!LHS)
+        return nullptr;
+    return this->ParseBinaryOpRHS(0,std::move(LHS));
 }
 
 auto parser::ParseI8Expr() -> std::unique_ptr<ExprAST> {

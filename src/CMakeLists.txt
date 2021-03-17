@@ -4,7 +4,7 @@ project(corgi-lang)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(corgi-lang main.cpp token.h lexer.cpp lexer.h AST.cpp AST.h parser.cpp parser.h)
-set(LLVM_DIR "/usr/local/Cellar/llvm/11.0.1/lib/cmake/llvm")
+set(LLVM_DIR "/usr/local/Cellar/llvm/11.1.0/lib/cmake/llvm")
 
 find_package(LLVM REQUIRED CONFIG)
 

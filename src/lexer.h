@@ -10,7 +10,6 @@
 
 class Lexer {
 public:
-    Lexer()=delete;
     explicit Lexer(std::istream *in)
         : in(in) {};
 

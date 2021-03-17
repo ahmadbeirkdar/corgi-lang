@@ -1,0 +1,7 @@
+test := 10987
+test1 := 99.123
+test3 := "Hello World"
+
+def fun(a,b) a + b
+
+

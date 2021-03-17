@@ -11,7 +11,7 @@
 
 class parser {
 public:
-    parser();
+    explicit parser(std::istream *in) : lexer(in) {this->getNextToken();};
 
 private:
     Lexer lexer;

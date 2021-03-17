@@ -37,7 +37,11 @@ private:
     auto ParsePrimary()          -> std::unique_ptr<ExprAST>;
     auto ParseBinaryOpRHS(
             int32_t exprPre, std::unique_ptr<ExprAST> LHS
-            )      -> std::unique_ptr<ExprAST>;
+            )                    -> std::unique_ptr<ExprAST>;
+    auto ParsePrototype()        -> std::unique_ptr<FunctionPrototypeExprAST>;
+    auto ParseExtern()           -> std::unique_ptr<FunctionPrototypeExprAST>;
+    auto ParseDefinition()       -> std::unique_ptr<FunctionAST>;
+    auto ParseTopLevelExpr()     -> std::unique_ptr<FunctionAST>;
 
     // Binary Operation Precedence
     const inline static std::unordered_map<char,int32_t> BinaryPrecedence = {

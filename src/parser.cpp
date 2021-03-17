@@ -197,3 +197,48 @@ auto parser::ParseBinaryOpRHS(int32_t exprPre, std::unique_ptr<ExprAST> LHS) -> 
     }
 }
 
+auto parser::ParsePrototype() -> std::unique_ptr<FunctionPrototypeExprAST> {
+    if(this->curr_token->get_kind() == Kind::Identifier)
+        return this->LogErrorPrototype("Error: Expected function name.");
+
+    auto functionName = this->curr_token->get_value<std::string>();
+    this->getNextToken();
+
+    if(this->curr_token->get_value<char>() != '(')
+        return this->LogErrorPrototype("Error: Expected (");
+
+    std::vector<std::string> args;
+    while(this->getNextToken()->get_kind() == Kind::Identifier)
+        args.push_back(this->curr_token->get_value<std::string>());
+
+    if(this->curr_token->get_value<char>() != ')')
+        return this->LogErrorPrototype("Error: Expected )");
+
+    this->getNextToken();
+
+    return std::make_unique<FunctionPrototypeExprAST>(functionName,std::move(args));
+}
+
+auto parser::ParseDefinition() -> std::unique_ptr<FunctionAST> {
+    this->getNextToken();
+
+    auto prototype = this->ParsePrototype();
+    if(!prototype)
+        return nullptr;
+    auto expr = this->ParseExpr();
+    if(expr)
+        return std::make_unique<FunctionAST>(std::move(prototype),std::move(expr));
+}
+
+auto parser::ParseExtern() -> std::unique_ptr<FunctionPrototypeExprAST> {
+    this->getNextToken();
+    return this->ParsePrototype();
+}
+
+auto parser::ParseTopLevelExpr() -> std::unique_ptr<FunctionAST> {
+    auto expr = this->ParseExpr();
+    if(expr)
+        return std::make_unique<FunctionAST>(std::make_unique<FunctionPrototypeExprAST>("",std::vector<std::string>()),std::move(expr));
+    return nullptr;
+}
+

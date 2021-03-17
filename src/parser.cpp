@@ -127,5 +127,34 @@ auto parser::ParseIdentifierExpr() -> std::unique_ptr<ExprAST> {
     return std::make_unique<FunctionCallExprAST>(name,std::move(fun_args));
 }
 
-
+auto parser::ParsePrimary() -> std::unique_ptr<ExprAST> {
+    switch (this->curr_token->get_kind()) {
+        case Kind::I8:
+            return this->ParseI8Expr();
+        case Kind::I16:
+            return this->ParseI16Expr();
+        case Kind::I32:
+            return this->ParseI32Expr();
+        case Kind::I64:
+            return this->ParseI64Expr();
+        case Kind::U8:
+            return this->ParseU8Expr();
+        case Kind::U16:
+            return this->ParseU16Expr();
+        case Kind::U32:
+            return this->ParseU32Expr();
+        case Kind::U64:
+            return this->ParseU64Expr();
+        case Kind::F32:
+            return this->ParseF32Expr();
+        case Kind::F64:
+            return this->ParseF64Expr();
+        case Kind::Identifier:
+            return this->ParseIdentifierExpr();
+        default:
+            if(this->curr_token->get_value<char>() == '(')
+                return this->ParseParenExpr();
+            return this->LogError("Error: Unknown token.");
+    }
+}
 

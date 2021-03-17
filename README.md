@@ -1,4 +1,7 @@
 <h1 align="center">The Corgi Programming Language</h1>
+
+[![Build status](https://badge.buildkite.com/cfb1b576c1982e0e826dfc017f964a14b2002c14b9f1066d92.svg)](https://buildkite.com/bassem/corgi-lang)
+
 <p align="center">
     The Corgi Programming Language - An LLVM Frontend<br>
     A simple procedural statically typed language, with a focus on algorithms.<br>

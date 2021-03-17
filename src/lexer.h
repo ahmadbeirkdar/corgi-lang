@@ -5,6 +5,7 @@
 #ifndef CORGI_LANG_Lexer_H
 #define CORGI_LANG_Lexer_H
 #include <istream>
+#include <memory>
 #include "token.h"
 
 class Lexer {

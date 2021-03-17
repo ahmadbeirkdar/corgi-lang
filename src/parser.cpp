@@ -1,7 +1,6 @@
 //
 // Created by Ahmad Beirkdar on 2021-02-25.
 //
-
 #include "parser.h"
 
 auto parser::getNextToken() -> std::unique_ptr<token>& {

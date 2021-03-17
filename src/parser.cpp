@@ -158,3 +158,40 @@ auto parser::ParsePrimary() -> std::unique_ptr<ExprAST> {
     }
 }
 
+auto parser::getTokenPrecedence() -> int32_t {
+    auto curr = this->curr_token->get_value<char>();
+    if(!isascii(curr))
+        return -1; // Not ascii, thus bad
+
+    if(parser::BinaryPrecedence.count(curr))
+        return parser::BinaryPrecedence.at(curr);
+    return -1; // Not found in map, thus bad
+}
+
+auto parser::ParseBinaryOpRHS(int32_t exprPre, std::unique_ptr<ExprAST> LHS) -> std::unique_ptr<ExprAST> {
+    while(true){
+        auto tokenPre = this->getTokenPrecedence();
+
+        // Binary operation(s) done.
+        if(tokenPre < exprPre)
+            return LHS;
+
+        // Otherwise not done yet...
+        char operation = this->curr_token->get_value<char>();
+        this->getNextToken(); // Take the operation, move to next
+
+        auto RHS = this->ParsePrimary(); // Parse primary for RHS
+        // If parsing was invalid
+        if(!RHS)
+            return nullptr;
+
+        auto nextPre = this->getTokenPrecedence();
+        if(tokenPre < nextPre){
+            RHS = ParseBinaryOpRHS(tokenPre+1,std::move(RHS));
+            if(!RHS)
+                return nullptr;
+        }
+        LHS = std::make_unique<BinaryExprAST>(operation,std::move(LHS),std::move(RHS));
+    }
+}
+

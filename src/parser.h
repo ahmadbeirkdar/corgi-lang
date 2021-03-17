@@ -7,6 +7,7 @@
 #include "lexer.h"
 #include "AST.h"
 #include <iostream>
+#include <unordered_map>
 
 class parser {
 public:
@@ -34,6 +35,20 @@ private:
     auto ParseParenExpr()        -> std::unique_ptr<ExprAST>;
     auto ParseIdentifierExpr()   -> std::unique_ptr<ExprAST>;
     auto ParsePrimary()          -> std::unique_ptr<ExprAST>;
+    auto ParseBinaryOpRHS(
+            int32_t exprPre, std::unique_ptr<ExprAST> LHS
+            )      -> std::unique_ptr<ExprAST>;
+
+    // Binary Operation Precedence
+    const inline static std::unordered_map<char,int32_t> BinaryPrecedence = {
+            {'<', 10},
+            {'+', 20},
+            {'-', 30},
+            {'*', 40},
+            {'/', 50}
+    };
+
+    auto getTokenPrecedence()   -> int32_t;
 
 
 };

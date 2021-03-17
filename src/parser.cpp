@@ -72,10 +72,16 @@ auto parser::ParseU64Expr() -> std::unique_ptr<ExprAST> {
 }
 
 auto parser::ParseF32Expr() -> std::unique_ptr<ExprAST> {
-    auto res = std::make_unique<f32ExprAST>(curr_token->get_value<double>());
+    auto res = std::make_unique<f32ExprAST>(curr_token->get_value<float>());
     this->getNextToken();
     return std::move(res);
 }
+auto parser::ParseF64Expr() -> std::unique_ptr<ExprAST> {
+    auto res = std::make_unique<f64ExprAST>(curr_token->get_value<double>());
+    this->getNextToken();
+    return std::move(res);
+}
+
 
 auto parser::ParseParenExpr() -> std::unique_ptr<ExprAST> {
     this->getNextToken();
@@ -100,7 +106,7 @@ auto parser::ParseIdentifierExpr() -> std::unique_ptr<ExprAST> {
         return std::make_unique<VariableExprAST>(name);
 
     // Otherwise if here, its a function call
-    this->getNextToken();
+    this->getNextToken(); // Take (
     std::vector<std::unique_ptr<ExprAST>> fun_args;
     if(this->curr_token->get_value<char>() != ')'){
         while (true) {
@@ -120,4 +126,6 @@ auto parser::ParseIdentifierExpr() -> std::unique_ptr<ExprAST> {
     this->getNextToken();
     return std::make_unique<FunctionCallExprAST>(name,std::move(fun_args));
 }
+
+
 

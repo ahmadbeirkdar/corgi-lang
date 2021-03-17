@@ -86,6 +86,13 @@ private:
     float value;
 };
 
+class f64ExprAST: public ExprAST{
+public:
+    explicit f64ExprAST(double value) : value(value) {};
+private:
+    double value;
+};
+
 class BinaryExprAST: public ExprAST{
 public:
     BinaryExprAST(char operation,std::unique_ptr<ExprAST> LHS, std::unique_ptr<ExprAST> RHS)

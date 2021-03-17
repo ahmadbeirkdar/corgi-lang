@@ -30,8 +30,10 @@ private:
     auto ParseU32Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseU64Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseF32Expr()          -> std::unique_ptr<ExprAST>;
+    auto ParseF64Expr()          -> std::unique_ptr<ExprAST>;
     auto ParseParenExpr()        -> std::unique_ptr<ExprAST>;
     auto ParseIdentifierExpr()   -> std::unique_ptr<ExprAST>;
+    auto ParsePrimary()          -> std::unique_ptr<ExprAST>;
 
 
 };

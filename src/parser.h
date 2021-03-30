@@ -13,11 +13,11 @@ class parser {
 public:
     explicit parser(std::istream *in) : lexer(in) {this->getNextToken();};
 
-private:
-    Lexer lexer;
     std::unique_ptr<token> curr_token;
+public:
+    Lexer lexer;
 
-           auto getNextToken()                                      -> std::unique_ptr<token>&;
+    auto getNextToken()                                      -> std::unique_ptr<token>&;
     static auto LogError(const std::string_view& str)               -> std::unique_ptr<ExprAST>;
     static auto LogErrorPrototype(const std::string_view& str)      -> std::unique_ptr<FunctionPrototypeExprAST>;
 

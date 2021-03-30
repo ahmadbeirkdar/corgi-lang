@@ -161,6 +161,8 @@ auto parser::ParsePrimary() -> std::unique_ptr<ExprAST> {
 }
 
 auto parser::getTokenPrecedence() -> int32_t {
+    if(this->curr_token->get_type() != typeid(char).name() || this->curr_token->get_kind() == Kind::Assignment)
+        return -1;
     auto curr = this->curr_token->get_value<char>();
     if(!isascii(curr))
         return -1; // Not ascii, thus bad
